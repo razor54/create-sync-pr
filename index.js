@@ -16,9 +16,8 @@ async function run() {
         payload: { repository },
       } = github.context;
 
-      const octokit = new github.GitHub(githubToken);
-      //part of test
-      const { data: currentPulls } = await octokit.pulls.list({
+      const octokit = github.getOctokit(githubToken);
+      const { data: currentPulls } = await octokit.rest.pulls.list({
         owner: repository.owner.login,
         repo: repository.name,
       });
@@ -33,7 +32,7 @@ async function run() {
       });
 
       if (!currentPull) {
-        const { data: pullRequest } = await octokit.pulls.create({
+        const { data: pullRequest } = await octokit.rest.pulls.create({
           owner: repository.owner.login,
           repo: repository.name,
           head: newBranch,
