@@ -43,11 +43,11 @@ jobs:
     name: Syncing branches
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: 12
+          node-version: 22
       - name: Create Sync PR
         uses: sudoStatus200/create-sync-pr@0.3.1
         with:
